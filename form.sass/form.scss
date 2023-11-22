@@ -1,0 +1,62 @@
+body {
+    font-family: sans-serif;
+    background-color: aqua;
+}
+
+form {
+    width: 300px;
+
+    
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width:50px;
+ 
+    margin-right: 5px;
+}
+
+button {
+    display: block;
+    margin-top: 10px;
+}
+
+#image-slider {
+    border: 3px solid black;
+    border-radius: 20px;
+    width: 400px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #image-slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s ease-in-out;
+  }
+  
+  #image-slider img.active {
+    transform: translateX(0);
+  }
+  
+  #image-slider img.next {
+    transform: translateX(100%);
+  }
+  
+  #image-slider img.prev {
+    transform: translateX(-100%);
+  }
+  
+  #timer {
+    font-size: 32px;
+    text-align: center;
+}

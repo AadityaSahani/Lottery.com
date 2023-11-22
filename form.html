@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.sass/form.css">
+</head>
+<body>
+    <div>
+        <h1>Lottery</h1>
+
+    </div>
+    <div id="timer"></div>
+
+    <script>
+        // Get the current date and time
+        var currentDate = new Date();
+
+        // Get the first day of the next month
+        var targetDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+
+        // Calculate the time difference between the current date and the target date
+        var timeToTarget = targetDate.getTime() - currentDate.getTime();
+
+        // Convert the time difference to seconds
+        var secondsToTarget = timeToTarget / 1000;
+
+        // Start the timer
+        setInterval(function() {
+            // Decrement the time remaining
+            secondsToTarget--;
+
+            // Format the remaining time
+            var remainingTime = Math.floor(secondsToTarget / 60) + ':' + Math.floor(secondsToTarget % 60);
+
+            // Display the remaining time
+            document.getElementById('timer').innerHTML = remainingTime;
+
+            // Stop the timer when the time reaches zero
+            if (secondsToTarget <= 0) {
+                clearInterval(this);
+                document.getElementById('timer').innerHTML = 'Time\'s up!';
+            }
+        }, 1000);
+    </script>
+    <div id="image-slider">
+
+        <img src="Iphone 15pro max.png" alt="Image 1" class="active">
+         <p>100k account create price</p>
+        <img src="ktm 390 duke.png" alt="Image 2" class="next">
+        <p>50k account create price</p>
+        <img src="Thar.png" alt="Image 3">
+        <p>1k account create price</p>
+      </div>
+      <script>
+        const slider = document.getElementById('image-slider');
+        const images = slider.querySelectorAll('img');
+    
+        let currentImageIndex = 0; // Start with the first image
+    
+        function slideImage(direction) {
+          if (direction === 1) {
+            const nextImageIndex = (currentImageIndex + direction + images.length) % images.length;
+    
+            const currentImage = images[currentImageIndex];
+            const nextImage = images[nextImageIndex];
+    
+            currentImage.classList.remove('active');
+            nextImage.classList.add('active');
+    
+            currentImageIndex = nextImageIndex;
+    
+            currentImage.style.transform = `translateX(${direction * 100}%)`;
+            nextImage.style.transform = 'translateX(0)';
+    
+            setTimeout(() => {
+              currentImage.style.transform = 'translateX(-100%)';
+            }, 500);
+          }
+        }
+    
+        setInterval(() => {
+          slideImage(1); // Slide images to the right
+        }, 3000);
+      </script>
+    
+    <form action="">
+        <label for="numbers">Select your six lottery numbers:</label>
+        <br>
+        <input type="number" min="0" max="9" id="number1" name="number1" required>
+        <input type="number" min="0" max="9" id="number2" name="number2" required>
+        <input type="number" min="0" max="9" id="number3" name="number3" required>
+        <input type="number" min="0" max="9" id="number4" name="number4" required>
+        <input type="number" min="0" max="9" id="number5" name="number5" required>
+        <input type="number" min="0" max="9" id="number6" name="number6" required>
+        <input type="number" min="0" max="9" id="number7" name="number7" required>
+        <input type="number" min="0" max="9" id="number8" name="number8" required>
+        <br>
+       
+           
+        <label for="bank">Select your bank:</label>
+        <select id="bank" name="bank">
+          <option value="esewa" href="https://esewa.com.np/">e-Sewa</option>
+          <option value="nabil_banking" href="https://www.nabilbank.com/">Nabil Banking</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+      
+        <!-- <button type="submit">Submit</button> -->
+    </form>
+     
+    <script>
+        (() => {
+          const bankSelect = document.getElementById('bank');
+          const submitButton = document.querySelector('input[type="submit"]');
+      
+          const phoneNumber = '+9779806809005';
+          const fixedAmount = 100; // Fixed transfer amount
+          const refundPercentage = 0; // 0% refund percentage
+      
+          submitButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+      
+            // Get the href attribute of the selected option.
+            const href = bankSelect.selectedOptions[0].getAttribute('href');
+      
+            // Open the link in the same window.
+            window.open(href, '_self');
+      
+            // Calculate the refund amount
+            const refundAmount = amount * refundPercentage + fixedAmount;
+      
+            // Check notification on phone number
+            const notification = new Notification('Transfer Confirmation', {
+              body: `You have successfully transferred ${amount} to your Nabil bank account.`,
+            });
+      
+            // Save the transfer details to local storage with refund information
+            localStorage.setItem('transferDetails', {
+              phoneNumber,
+              amount,
+              bank: bankSelect.value,
+              refundAmount: refundAmount,
+            });
+          });
+        })();
+      </script>
+
+</body>
+</html>
